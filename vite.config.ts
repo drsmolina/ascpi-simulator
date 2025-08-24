@@ -10,5 +10,7 @@ export default defineConfig({
       adapter,
       entry: 'src/index.tsx'
     })
-  ]
+  ],
+  base: '/ascpi-simulator/',
+  build: { outDir: 'docs' }
 })
