@@ -18,11 +18,16 @@
     "git:status": "git status"
   },
   "dependencies": {
-    "hono": "^4.9.2"
+    "firebase": "^11.0.0",
+    "hono": "^4.9.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
     "@hono/vite-build": "^1.2.0",
     "@hono/vite-dev-server": "^0.18.2",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
     "typescript": "^5.9.2",
     "vite": "^6.3.5",
     "wrangler": "^4.4.0"
