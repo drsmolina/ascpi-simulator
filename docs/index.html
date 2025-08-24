@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASCP(i) MLS Exam Simulator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="./static/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="min-h-screen bg-gray-100 flex items-center justify-center py-10">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl font-bold text-gray-800 mb-4">
+            <i class="fas fa-microscope mr-3 text-blue-600"></i>
+            ASCP(i) MLS Exam Simulator
+          </h1>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Computer-Adaptive Testing (CAT) simulation with 100 questions across all major laboratory disciplines.
+            Questions adapt in difficulty based on your performance.
+          </p>
+        </div>
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+          <h2 class="text-2xl font-semibold mb-6 text-gray-800">
+            <i class="fas fa-chart-pie mr-2 text-green-600"></i>
+            Exam Content Areas
+          </h2>
+          <div class="grid md:grid-cols-2 gap-4 mb-6">
+            <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+              <h3 class="font-semibold text-red-800">Blood Banking</h3>
+              <p class="text-sm text-red-600">17-22% (~20 questions)</p>
+            </div>
+            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <h3 class="font-semibold text-blue-800">Clinical Chemistry</h3>
+              <p class="text-sm text-blue-600">17-22% (~20 questions)</p>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+              <h3 class="font-semibold text-purple-800">Hematology</h3>
+              <p class="text-sm text-purple-600">17-22% (~20 questions)</p>
+            </div>
+            <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+              <h3 class="font-semibold text-green-800">Microbiology</h3>
+              <p class="text-sm text-green-600">17-22% (~20 questions)</p>
+            </div>
+            <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+              <h3 class="font-semibold text-yellow-800">Urinalysis</h3>
+              <p class="text-sm text-yellow-600">5-10% (~8 questions)</p>
+            </div>
+            <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-200">
+              <h3 class="font-semibold text-indigo-800">Immunology</h3>
+              <p class="text-sm text-indigo-600">5-10% (~7 questions)</p>
+            </div>
+          </div>
+          <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <h3 class="font-semibold text-gray-800">Laboratory Operations</h3>
+            <p class="text-sm text-gray-600">5-10% (~5 questions)</p>
+          </div>
+        </div>
+        <div class="text-center">
+          <button id="startExam" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-lg transition duration-300 shadow-lg">
+            <i class="fas fa-play mr-2"></i>
+            Start Practice Exam
+          </button>
+        </div>
+        <div id="examArea" class="hidden mt-8">
+          <div class="bg-white rounded-lg shadow-lg p-8">
+            <div class="mb-6">
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm font-medium text-gray-600">Progress</span>
+                <span id="progressText" class="text-sm font-medium text-gray-600">0/100</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div id="progressBar" class="bg-blue-600 h-2 rounded-full" style="width: 0%"></div>
+              </div>
+            </div>
+            <div id="questionArea">
+              <div class="mb-4">
+                <span id="categoryBadge" class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded"></span>
+                <span id="difficultyBadge" class="inline-block ml-2 bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded"></span>
+              </div>
+              <h3 id="questionStem" class="text-lg font-medium mb-6 text-gray-800"></h3>
+              <div id="optionsArea" class="space-y-3">
+              </div>
+              <button id="submitAnswer" class="mt-6 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded transition duration-300 disabled:opacity-50" disabled>
+                Submit Answer
+              </button>
+            </div>
+            <div id="resultArea" class="hidden">
+              <div id="answerFeedback" class="p-4 rounded-lg mb-4"></div>
+              <button id="nextQuestion" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition duration-300">
+                Next Question
+              </button>
+            </div>
+            <div id="completionArea" class="hidden text-center">
+              <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                <i class="fas fa-trophy text-yellow-500 text-4xl mb-4"></i>
+                <h3 class="text-2xl font-bold text-green-800 mb-2">Exam Completed!</h3>
+                <p class="text-green-700 mb-4">You have completed all 100 questions.</p>
+                <button id="restartExam" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition duration-300">
+                  Start New Exam
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.0/dist/axios.min.js"></script>
+    <script src="./static/app.js"></script>
+  </body>
+</html>
